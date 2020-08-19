@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from users.models import Profile
 # Create your models here.
 class Users(models.Model):
     user_id = models.PositiveIntegerField(null=True)
@@ -15,7 +15,7 @@ class Users(models.Model):
 class Business(models.Model):
     name = models.TextField(max_length=100)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-    neighborhood_id = models.ForeignKey(Neighborhood,default=None, on_delete=models.CASCADE)
+    neighborhood_id = models.ForeignKey(NeighbourHood,default=None, on_delete=models.CASCADE)
     email = models.TextField(max_length = 100)
 
     def __str__(self):
@@ -24,7 +24,7 @@ class Business(models.Model):
 class NeighbourHood(models.Model):
   name = models.CharField(max_length=50)
   location = models.CharField(max_length=60)
-  admin = models.ForeignKey("Profile", on_delete=models.CASCADE, related_name='hood')
+  admin = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='hood')
   hood_logo = models.ImageField(upload_to='images/')
   description = models.TextField()
   health_tell = models.IntegerField(null=True, blank=True)
