@@ -1,11 +1,11 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.template import RequestContext
-from .forms import UserRegisterForm, BusinessForm
+from .forms import SignupForm, BusinessForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from .models import NeighbourHood, Profile, Business, Post
-from .forms import  NeighbourHoodForm,ProfileUpdateForm
+from .forms import  NeighbourHoodForm,UpdateProfileForm
 from django.contrib.auth.models import User
 
 # Create your views here.
@@ -16,7 +16,7 @@ def index(request):
 
 def signup(request):
     if request.method == 'POST':
-        form = UserRegisterForm(request.POST)
+        form = SignupForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
@@ -25,7 +25,7 @@ def signup(request):
             login(request, user)
             return redirect('index')
     else:
-        form = UserRegisterForm()
+        form = SignupForm()
     return render(request, 'registration/signup.html', {'form': form})
 
 
