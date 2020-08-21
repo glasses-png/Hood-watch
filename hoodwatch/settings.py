@@ -69,8 +69,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'hood',
-        'USER': 'charlotte',
-    'PASSWORD':'1234',
+        'USER': 'moringa',
+    'PASSWORD':'Access',
     'HOST': 'localhost',
     }
 }
@@ -113,6 +113,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = []
 
 MEDIA_URL ='/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
